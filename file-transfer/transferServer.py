@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
-# #####################
-# Echo server program #
-#######################
+# ######################
+# File transfer server #
+########################
 # IMPORTS
 import os, socket, sys, re
 sys.path.append("../lib")       # for params
@@ -42,11 +42,7 @@ while 1:
     if len(data) == 0:
         print("Zero length read, nothing to send, terminating")
         break
-    sendMsg = ("Echoing %s" % data).encode()
-    print("Received '%s', sending '%s'" % (data, sendMsg.decode()))
-    while len(sendMsg):
-        bytesSent = conn.send(sendMsg)
-        sendMsg = sendMsg[bytesSent:0]
+
 conn.shutdown(socket.SHUT_WR)
 conn.close()
 

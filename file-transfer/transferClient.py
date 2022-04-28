@@ -67,27 +67,7 @@ while (sending_file):
         s.send(transfer_len)
         s.send(arched_file)
 
-    outMessage = "Hello world!".encode()
-    while len(outMessage):
-        print("sending '%s'" % outMessage.decode())
-        bytesSent = s.send(outMessage)
-        outMessage = outMessage[bytesSent:]
-
-data = s.recv(1024).decode()
-print("Received '%s'" % data)
-
-outMessage = "Hello world!"
-while len(outMessage):
-    print("sending '%s'" % outMessage)
-    bytesSent = s.send(outMessage.encode())
-    outMessage = outMessage[bytesSent:]
-
 s.shutdown(socket.SHUT_WR)      # no more output
 
-while 1:
-    data = s.recv(1024).decode()
-    print("Received '%s'" % data)
-    if len(data) == 0:
-        break
 print("Zero length read.  Closing")
 s.close()
